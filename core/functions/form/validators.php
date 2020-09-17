@@ -85,9 +85,9 @@ function validate_email($field_input, array &$field): bool
  */
 function validate_email_unique($field_input, array &$field): bool
 {
-    if (!empty(App\App::$db->mySQL->query(
+    if (!App\App::$db->mySQL->query(
         "SELECT * FROM users WHERE email=$field_input"
-    ))) {
+    )) {
         $field['error'] = 'Email already registered';
 
         return false;
