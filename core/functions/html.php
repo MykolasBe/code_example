@@ -1,7 +1,7 @@
  <?php /**
-  *funkc sugeneruoja html formos atributus is masyvo
-  * @param array $array atributu masyvas
-  * @return string grazina sudeta atributu stringa
+  * Function generates HTML attributes from array
+  * @param array $array
+  * @return string
   */
  function html_attr(array $array): string
  {
@@ -14,7 +14,7 @@
  }
 
  /**
-  * F-cija generuoja input html atributus
+  * Function generates input HTML attributes
   * @param $field_id
   * @param array $field
   * @return string
@@ -29,7 +29,7 @@
  }
 
  /**
-  * F-cija generuoja select atributus
+  * Function generates select HTML attributes
   * @param $field_id
   * @param array $field
   * @return string
@@ -44,6 +44,7 @@
  }
 
  /**
+  * Function generates options HTML attributes
   * @param string $option_id
   * @param array $field
   * @return string
@@ -60,6 +61,13 @@
      return html_attr($attrs);
  }
 
+ /**
+  * Function generates radio HTML attributes
+  * @param $field_id
+  * @param $option_id
+  * @param array $field
+  * @return string
+  */
  function radio_attr ($field_id, $option_id, array $field){
      return html_attr(($field['extra']['attr'] ?? []) + [
              'name' => $field_id,
@@ -68,7 +76,7 @@
          ]);
  }
  /**
-  * F-cija generuoja textarea atributus
+  * Function generates textarea HTML attributes
   * @param $field_id
   * @param array $field
   * @return string
@@ -78,7 +86,7 @@
  }
 
  /**
-  * F-cija generuoja button atributus
+  * Function generates button HTML attributes
   * @param $button_id
   * @param array $button
   * @return string

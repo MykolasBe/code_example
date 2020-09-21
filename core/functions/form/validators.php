@@ -86,7 +86,7 @@ function validate_email($field_input, array &$field): bool
 function validate_email_unique($field_input, array &$field): bool
 {
     if (!App\App::$db->mySQL->query(
-        "SELECT * FROM users WHERE email=$field_input"
+        "SELECT * FROM users WHERE email='$field_input'"
     )) {
         $field['error'] = 'Email already registered';
 
@@ -105,15 +105,16 @@ function validate_email_unique($field_input, array &$field): bool
 function validate_login(array $inputs, array &$form): bool
 {
     $email = $inputs['email'];
+    $data = App\App::$db->mySQL->query(
+        "SELECT * FROM users WHERE email='$email'");
+    $user = $data->fetch_object();
 
+        if(isset($user->password)){
+            if (password_verify($inputs['password'],$user->password)){
 
-    if ($data = App\App::$db->mySQL->query(
-        "SELECT * FROM users WHERE email='$email'"
-    )) {
-        if (password_verify($inputs['password'],$data->fetch_object()->password)){
-            return true;
-        }
-    } else {
+                return true;
+            }
+        } else {
         $form['error'] = 'incorrect password or email';
 
         return false;

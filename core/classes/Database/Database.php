@@ -6,14 +6,15 @@ use mysqli;
 
 class Database {
 
-    private $servername = 'localhost';
-    private $username = 'root';
-    private $password = '6993';
     public $mySQL;
 
-    public function __construct(string $DB_name, string $table_name)
+    public function __construct(string $servername, string $username, string $password, string $DB_name, string $table_name)
     {
-        $this->mySQL = new mysqli($this->servername, $this->username, $this->password, $DB_name);
+        $link = new mysqli($servername, $username, $password);
+        $link->query("CREATE DATABASE IF NOT EXISTS $DB_name");
+        $link->close();
+
+        $this->mySQL = new mysqli($servername, $username, $password, $DB_name);
 
         if ($this->mySQL->connect_error) {
             die("Connection failed: " . $this->mySQL->connect_error);
@@ -22,10 +23,10 @@ class Database {
         }
     }
 
+
     /**
      * Check if table index exists
      * @param string $table_name
-     * @return bool
      */
     private function tableExists(string $table_name): void
     {

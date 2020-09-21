@@ -1,6 +1,6 @@
 <?php
 /**
- * F-cija apsauganti nuo pavojingu inputu(POST)
+ * Function protects from harmful inputs(POST)
  * @param array $form
  * @return array|null
  */
@@ -23,7 +23,8 @@ function get_filtered_input(array $form): ?array
 
 
 /**
- * F-cija validuojanti inputus
+ * Function that calls validators
+ * Returns true if valid
  * @param array $form
  * @param $input
  * @return bool

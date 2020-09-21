@@ -11,7 +11,7 @@ class App {
 
     public function __construct()
     {
-        self::$db = new Database('recruitment_task', 'users');
+        self::$db = new Database('localhost', 'root','6993','example_db','users');
         self::$session = new Session();
     }
 
